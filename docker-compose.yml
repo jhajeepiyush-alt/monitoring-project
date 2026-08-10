@@ -1,5 +1,4 @@
 services:
-
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
@@ -44,6 +43,10 @@ services:
     restart: unless-stopped
     ports:
       - "9100:9100"
+    command:
+      - "--path.rootfs=/host"
+    volumes:
+      - "/:/host:ro"
 
 volumes:
   prometheus_data:
